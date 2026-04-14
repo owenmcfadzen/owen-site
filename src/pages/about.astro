@@ -20,13 +20,13 @@ import LiveColophon from '../components/LiveColophon.jsx';
       </div>
     </div>
 
-    <h2 class="section-label">Currently</h2>
+    <h2 class="section-label about-section">Currently</h2>
     <p>Director of Programs & Learning at Hudson Lab Ventures, building entrepreneurship education for teenagers across three continents. The job is half narrative architecture — designing what the experience should mean — and half operational infrastructure — making the machinery actually run. Make.com, Notion, Tally, Loops, Stripe. Bridging the gap between intent and execution is what I do.</p>
 
-    <h2 class="section-label" style="margin-top: var(--gap-section);">Previously</h2>
+    <h2 class="section-label about-section">Previously</h2>
     <p>Entrepreneur in Residence and Partner at Prehype, the venture development firm behind Bark and Barkbox. Before that, architecture school — twice — which is where I learned that every interesting problem is a systems problem in disguise.</p>
 
-    <h2 class="section-label" style="margin-top: var(--gap-section);">Interests</h2>
+    <h2 class="section-label about-section">Interests</h2>
     <p>Fifteen trips to Japan.</p>
     <FifteenTrips client:visible />
     <p>These visits — and the years of reading, collecting, and paying attention between them — are the lens through which I see most things. Scandinavian restraint and Japanese craft aren't opposites. They're two answers to the same question: what happens when you pay attention to the things most people rush past?</p>
@@ -40,7 +40,7 @@ import LiveColophon from '../components/LiveColophon.jsx';
     </div>
     <figcaption class="photo-scatter-caption">Tokyo, somewhere between the fifth and fifteenth trip.</figcaption>
 
-    <h2 class="section-label" style="margin-top: var(--gap-section);">This site</h2>
+    <h2 class="section-label about-section">This site</h2>
     <p>Built with Astro, typeset in Charter and Inter, styled by hand. The interactive components are built in conversation with Claude — not generated, but developed through dialogue. If something on this site can only exist on the web, that's by design.</p>
     <p>The column you're reading is calculated from Charter's font metrics to hold 12–16 words per line. The spacing has three values. The colors have three tiers. Everything here is a system, because systems compound while decoration fades.</p>
 
@@ -80,16 +80,20 @@ import LiveColophon from '../components/LiveColophon.jsx';
     color: var(--color-body);
     margin: 0 0 var(--gap-paragraph);
   }
+  .about-section {
+    margin-top: calc(var(--gap-section) + 16px);
+    margin-bottom: 18px;
+    padding-bottom: 0;
+  }
 
   /* --- Film print photos: break the grid --- */
   .photo-scatter {
     position: relative;
-    height: clamp(260px, 35vw, 380px);
-    margin: var(--gap-section) calc(-1 * var(--page-pad)) var(--gap-section);
-    /* bleeds past the text column */
+    height: clamp(300px, 40vw, 440px);
+    margin: calc(var(--gap-section) + 8px) calc(-2 * var(--page-pad)) calc(var(--gap-section) + 8px);
   }
   .photo-scatter--wide {
-    height: clamp(200px, 28vw, 320px);
+    height: clamp(220px, 30vw, 340px);
     margin-bottom: 0;
   }
   .film-print {
@@ -114,24 +118,24 @@ import LiveColophon from '../components/LiveColophon.jsx';
     border-radius: 1px;
   }
   .film-print--left {
-    width: clamp(220px, 32vw, 340px);
+    width: clamp(260px, 38vw, 400px);
     height: auto;
-    left: 5%;
-    top: 10%;
+    left: 3%;
+    top: 8%;
     transform: rotate(-2.5deg);
     z-index: 1;
   }
   .film-print--right {
-    width: clamp(200px, 28vw, 300px);
+    width: clamp(240px, 34vw, 360px);
     height: auto;
-    right: 5%;
-    top: 5%;
+    right: 0%;
+    top: 0%;
     transform: rotate(1.8deg);
     z-index: 2;
   }
   .film-print--wide {
     position: relative;
-    width: clamp(340px, 70vw, 600px);
+    width: clamp(380px, 75vw, 660px);
     margin: 0 auto;
     height: auto;
     transform: rotate(-0.8deg);
@@ -158,15 +162,15 @@ import LiveColophon from '../components/LiveColophon.jsx';
 
   @media (max-width: 600px) {
     .photo-scatter {
-      height: clamp(180px, 50vw, 260px);
+      height: clamp(200px, 55vw, 280px);
     }
     .film-print--left {
-      width: 55%;
-      left: 2%;
+      width: 58%;
+      left: 0%;
     }
     .film-print--right {
-      width: 48%;
-      right: 2%;
+      width: 52%;
+      right: 0%;
     }
   }
 </style>
