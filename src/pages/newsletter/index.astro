@@ -12,24 +12,31 @@ const issues = [
 ---
 <Base title="Newsletter — Owen McFadzen" currentPage="newsletter">
   <div class="newsletter-page">
-    <h1 class="nl-title">Newsletter</h1>
-    <p class="nl-desc">Shorter thinking, half-formed ideas, things I've found. Three parts: something on my mind, something I found, what's new on the site.</p>
 
-    <!-- Skeuomorphic envelope -->
+    <!-- Skeuomorphic envelope — above title -->
     <div class="envelope-wrap">
-      <div class="envelope">
-        <div class="envelope-flap"></div>
-        <div class="envelope-body">
-          <div class="envelope-liner"></div>
-          <div class="envelope-paper">
-            <div class="envelope-line"></div>
-            <div class="envelope-line envelope-line--short"></div>
-            <div class="envelope-line"></div>
-            <div class="envelope-line envelope-line--med"></div>
-          </div>
+      <div class="envelope" role="img" aria-label="An open envelope">
+        <!-- Back panel -->
+        <div class="env-back"></div>
+        <!-- Letter inside -->
+        <div class="env-letter">
+          <div class="env-letter-line"></div>
+          <div class="env-letter-line env-letter-line--short"></div>
+          <div class="env-letter-line"></div>
+          <div class="env-letter-line env-letter-line--med"></div>
+          <div class="env-letter-line env-letter-line--short"></div>
+        </div>
+        <!-- Front pocket (V-shape) -->
+        <div class="env-pocket"></div>
+        <!-- Flap (opens on hover) -->
+        <div class="env-flap-wrap">
+          <div class="env-flap"></div>
         </div>
       </div>
     </div>
+
+    <h1 class="nl-title">Newsletter</h1>
+    <p class="nl-desc">Shorter thinking, half-formed ideas, things I've found. Three parts: something on my mind, something I found, what's new on the site.</p>
 
     <div class="nl-subscribe">
       <div class="nl-subscribe-label">Subscribe</div>
@@ -82,110 +89,120 @@ const issues = [
     margin: 0 0 var(--gap-element);
   }
 
-  /* --- Skeuomorphic envelope --- */
+  /* --- Skeuomorphic envelope: border-trick construction + 3D flap --- */
   .envelope-wrap {
     display: flex;
     justify-content: center;
-    margin: var(--gap-element) 0 calc(var(--gap-section) + 8px);
+    margin: 0 0 calc(var(--gap-section) + 4px);
   }
   .envelope {
+    --env-w: clamp(240px, 36vw, 340px);
+    --env-h: calc(var(--env-w) * 0.62);
+    --env-color: #f0ede8;
+    --env-color-dark: #e8e4dd;
+    --env-pocket: #e2ded6;
+    --env-flap: #ece8e0;
+    --env-paper: #fcfbf9;
     position: relative;
-    width: clamp(260px, 40vw, 360px);
-    transform: rotate(-1.5deg);
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08))
-            drop-shadow(0 4px 12px rgba(0,0,0,0.06))
-            drop-shadow(0 10px 32px rgba(0,0,0,0.04));
+    width: var(--env-w);
+    height: var(--env-h);
+    transform: rotate(-1.2deg);
+    perspective: 600px;
+    cursor: default;
   }
-  .envelope-body {
-    position: relative;
-    background: #fff;
-    border-radius: 2px 2px 6px 6px;
-    padding: 20px 22px 24px;
-    overflow: hidden;
-    aspect-ratio: 1.5/1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+  [data-theme="dark"] .envelope {
+    --env-color: #2e2c28;
+    --env-color-dark: #282624;
+    --env-pocket: #242220;
+    --env-flap: #33302b;
+    --env-paper: #3a3836;
   }
-  [data-theme="dark"] .envelope-body {
-    background: #2c2b28;
-  }
-  .envelope-liner {
+
+  /* Back panel */
+  .env-back {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(0,0,0,0.02) 0%,
-      transparent 30%
-    );
-    border-bottom: 3px solid rgba(0,0,0,0.03);
+    background: var(--env-color);
+    border-radius: 2px 2px 5px 5px;
+    box-shadow:
+      0 0.5px 1px rgba(0,0,0,0.1),
+      0 2px 6px rgba(0,0,0,0.06),
+      0 8px 24px rgba(0,0,0,0.05),
+      0 16px 48px rgba(0,0,0,0.03);
   }
-  [data-theme="dark"] .envelope-liner {
-    background: linear-gradient(
-      180deg,
-      rgba(255,255,255,0.02) 0%,
-      transparent 30%
-    );
-    border-bottom-color: rgba(255,255,255,0.03);
+  [data-theme="dark"] .env-back {
+    box-shadow:
+      0 0.5px 1px rgba(0,0,0,0.3),
+      0 2px 6px rgba(0,0,0,0.2),
+      0 8px 24px rgba(0,0,0,0.15),
+      0 16px 48px rgba(0,0,0,0.08);
   }
-  /* Letter peeking out */
-  .envelope-paper {
-    position: relative;
-    background: #fcfbf9;
+
+  /* Letter peeking out the top */
+  .env-letter {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: 20%;
+    top: -20%;
+    background: var(--env-paper);
     border-radius: 2px;
-    padding: 16px 18px;
-    margin: 0 4px;
-    box-shadow: 0 -1px 3px rgba(0,0,0,0.04);
-    transform: translateY(8px);
+    padding: 14% 12% 20%;
+    box-shadow: 0 -1px 4px rgba(0,0,0,0.04);
+    transition: top 0.4s cubic-bezier(0.2, 0, 0, 1);
+    z-index: 1;
   }
-  [data-theme="dark"] .envelope-paper {
-    background: #3a3836;
+  .envelope:hover .env-letter {
+    top: -35%;
   }
-  .envelope-line {
+  .env-letter-line {
     height: 2px;
     background: var(--color-border);
     border-radius: 1px;
-    margin-bottom: 8px;
+    margin-bottom: 7px;
   }
-  .envelope-line--short {
-    width: 55%;
-  }
-  .envelope-line--med {
-    width: 75%;
-    margin-bottom: 0;
-  }
-  /* Flap — folded back */
-  .envelope-flap {
-    position: relative;
-    width: 100%;
-    z-index: 1;
-    margin-bottom: -1px;
-  }
-  .envelope-flap::before {
-    content: '';
-    display: block;
-    width: 100%;
-    aspect-ratio: 2.5/1;
-    background: #f0ede7;
-    clip-path: polygon(0% 100%, 50% 15%, 100% 100%);
-    transform: scaleY(-1) translateY(-1px);
-    transform-origin: bottom center;
-  }
-  [data-theme="dark"] .envelope-flap::before {
-    background: #262523;
-  }
-  .envelope-flap::after {
-    content: '';
+  .env-letter-line--short { width: 50%; }
+  .env-letter-line--med { width: 70%; }
+
+  /* Front pocket — V-shape via borders */
+  .env-pocket {
     position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.04) 20%, rgba(0,0,0,0.04) 80%, transparent);
+    width: 0;
+    height: 0;
+    border-left: calc(var(--env-w) / 2) solid var(--env-color-dark);
+    border-right: calc(var(--env-w) / 2) solid var(--env-color-dark);
+    border-top: calc(var(--env-h) * 0.55) solid transparent;
+    border-bottom: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    z-index: 2;
   }
-  [data-theme="dark"] .envelope-flap::after {
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04) 20%, rgba(255,255,255,0.04) 80%, transparent);
+
+  /* Flap — 3D fold with perspective */
+  .env-flap-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+    perspective: 400px;
   }
+  .env-flap {
+    width: 0;
+    height: 0;
+    border-left: calc(var(--env-w) / 2) solid transparent;
+    border-right: calc(var(--env-w) / 2) solid transparent;
+    border-top: calc(var(--env-h) * 0.52) solid var(--env-flap);
+    transform-origin: top center;
+    transform: rotateX(170deg);
+    transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
+  }
+  .envelope:hover .env-flap {
+    transform: rotateX(155deg);
+  }
+
   .nl-subscribe {
     background: var(--color-subtle);
     border-radius: 6px;
