@@ -1,0 +1,105 @@
+---
+interface Props {
+  category: string;
+  title: string;
+  subtitle: string;
+  href: string;
+  bg: string;
+  fg: string;
+  imageColor?: string;
+}
+const { category, title, subtitle, href, bg, fg, imageColor } = Astro.props;
+---
+<section class="hero" style={`background:${bg}; color:${fg};`}>
+  <div class="hero-content">
+    <h5 class="hero-category">{category}</h5>
+    <h2 class="hero-title">{title}</h2>
+    <p class="hero-subtitle">{subtitle}</p>
+    <div class="hero-cta">
+      <a href={href} class="hero-button" style={`background:${fg}; color:${bg};`}>Read Article</a>
+    </div>
+  </div>
+  {imageColor && (
+    <div class="hero-image-wrap">
+      <div class="hero-image" style={`background:${imageColor};`}></div>
+    </div>
+  )}
+</section>
+
+<style>
+  .hero {
+    height: var(--hero-height);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 var(--page-pad) clamp(28px, 5vw, 48px);
+  }
+  .hero-category {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    margin: 0 0 14px;
+  }
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 4.5vw, 46px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+  .hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.45;
+    margin: 0;
+    opacity: 0.55;
+    max-width: 400px;
+  }
+  .hero-cta {
+    margin-top: var(--gap-paragraph);
+  }
+  .hero-button {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 30px;
+    padding: 0.6em 1.5em 0.5em;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.1s;
+  }
+  .hero-button:hover {
+    text-decoration: none;
+    transform: scale(0.97);
+  }
+  .hero-image-wrap {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 48%;
+    max-width: 440px;
+    z-index: 1;
+  }
+  .hero-image {
+    width: 100%;
+    aspect-ratio: 16/10;
+    border-radius: 2px 0 0 0;
+  }
+  @media (max-width: 640px) {
+    .hero-image-wrap { display: none; }
+  }
+</style>

@@ -1,0 +1,87 @@
+/*
+  DESIGN SYSTEM TOKENS
+  Studio Owen — derived from iA principles
+  Charter reads, Inter navigates, Mono counts.
+  Three sizes. Three gaps. Three color tiers.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap');
+
+@font-face { font-family: 'Charter'; font-weight: 400; font-style: normal; font-display: swap; src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Charter/Charter-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'Charter'; font-weight: 400; font-style: italic; font-display: swap; src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Charter/Charter-Italic.woff2') format('woff2'); }
+@font-face { font-family: 'Charter'; font-weight: 700; font-style: normal; font-display: swap; src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Charter/Charter-Bold.woff2') format('woff2'); }
+@font-face { font-family: 'Charter'; font-weight: 700; font-style: italic; font-display: swap; src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Charter/Charter-BoldItalic.woff2') format('woff2'); }
+
+:root {
+  /* --- Fonts --- */
+  --font-serif: 'Charter', 'Georgia', serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* --- Type scale: 3 sizes only --- */
+  --type-lede: 21.5px;
+  --type-body: 18.5px;
+  --type-small: 14px;
+
+  /* --- Line heights --- */
+  --lh-lede: 1.55;
+  --lh-body: 1.58;
+  --lh-small: 1.5;
+
+  /* --- Spacing: 3 values --- */
+  --gap-paragraph: 22px;
+  --gap-element: 32px;
+  --gap-section: 56px;
+
+  /* --- Layout --- */
+  --page-pad: clamp(20px, 5vw, 56px);
+  --col-width: 640px; /* fallback — JS calculates from font metrics */
+  --header-height: 52px;
+  --hero-height: 36em;
+
+  /* --- Colors: light mode (contrast-first, iA benchmark) --- */
+  --color-bg: #faf9f7;
+  --color-fg: #1d1d1b;
+  --color-body: rgba(29, 29, 27, 0.88);
+  --color-muted: rgba(29, 29, 27, 0.55);
+  --color-faint: rgba(29, 29, 27, 0.30);
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-subtle: rgba(0, 0, 0, 0.03);
+  --color-link: #0969da;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #141413;
+    --color-fg: #e5e2dd;
+    --color-body: rgba(229, 226, 221, 0.92);
+    --color-muted: rgba(229, 226, 221, 0.55);
+    --color-faint: rgba(229, 226, 221, 0.30);
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-subtle: rgba(255, 255, 255, 0.04);
+    --color-link: #6db3f2;
+  }
+}
+
+/* Dark mode class override for manual toggle */
+[data-theme="dark"] {
+  --color-bg: #141413;
+  --color-fg: #e5e2dd;
+  --color-body: rgba(229, 226, 221, 0.92);
+  --color-muted: rgba(229, 226, 221, 0.55);
+  --color-faint: rgba(229, 226, 221, 0.30);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-subtle: rgba(255, 255, 255, 0.04);
+  --color-link: #6db3f2;
+}
+
+[data-theme="light"] {
+  --color-bg: #faf9f7;
+  --color-fg: #1d1d1b;
+  --color-body: rgba(29, 29, 27, 0.88);
+  --color-muted: rgba(29, 29, 27, 0.55);
+  --color-faint: rgba(29, 29, 27, 0.30);
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-subtle: rgba(0, 0, 0, 0.03);
+  --color-link: #0969da;
+}

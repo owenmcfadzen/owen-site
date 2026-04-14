@@ -1,0 +1,166 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const issues = [
+  { num: "006", title: "The constraint is the feature", date: "Apr 2026", preview: "On iA Writer, deliberate limitations, and why the best tools say no.", imageColor: "#2a2a3a" },
+  { num: "005", title: "Fifteen trips to Japan", date: "Mar 2026", preview: "What changes when a place stops being a destination and starts being a practice.", imageColor: "#3a3028" },
+  { num: "004", title: "Building in public, quietly", date: "Feb 2026", preview: "The difference between performing work and sharing work.", imageColor: "#28303a" },
+  { num: "003", title: "Musashi's sword", date: "Jan 2026", preview: "Hidden tools inside a katana's scabbard.", imageColor: "#2e2e28" },
+  { num: "002", title: "Systems, not sequences", date: "Dec 2025", preview: "How architecture school taught me to think in maps.", imageColor: "#1e2e38" },
+  { num: "001", title: "Hello, and the onigiri principle", date: "Nov 2025", preview: "Why default quality matters more than peak quality.", imageColor: "#2a2828" },
+];
+---
+<Base title="Newsletter — Owen McFadzen" currentPage="newsletter">
+  <div class="newsletter-page">
+    <h1 class="nl-title">Newsletter</h1>
+    <p class="nl-desc">Shorter thinking, half-formed ideas, things I've found. Three parts: something on my mind, something I found, what's new on the site.</p>
+
+    <div class="nl-subscribe">
+      <div class="nl-subscribe-label">Subscribe</div>
+      <form class="nl-form">
+        <input type="email" placeholder="you@example.com" class="nl-input" />
+        <button type="submit" class="nl-button">Subscribe</button>
+      </form>
+      <div class="nl-subscribe-note">Roughly monthly. No tracking. Also on RSS.</div>
+    </div>
+
+    <div class="nl-archive-label section-label--small">Archive — {issues.length} issues</div>
+
+    {issues.map(issue => (
+      <a href={`/newsletter/${issue.num}/`} class="nl-issue">
+        <div class="nl-issue-content">
+          <div class="nl-issue-meta">
+            <span class="nl-issue-num">{issue.num}</span>
+            <span class="nl-issue-date">{issue.date}</span>
+          </div>
+          <div class="nl-issue-title">{issue.title}</div>
+          <div class="nl-issue-preview">{issue.preview}</div>
+        </div>
+        {issue.imageColor && (
+          <div class="nl-issue-image" style={`background: ${issue.imageColor};`}></div>
+        )}
+      </a>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .newsletter-page {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: clamp(60px, 10vw, 112px) var(--page-pad);
+  }
+  .nl-title {
+    font-family: var(--font-sans);
+    font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 600;
+    line-height: 1.18;
+    margin: 0 0 18px;
+  }
+  .nl-desc {
+    font-family: var(--font-serif);
+    font-size: var(--type-body);
+    line-height: var(--lh-body);
+    color: var(--color-body);
+    margin: 0 0 var(--gap-element);
+  }
+  .nl-subscribe {
+    background: var(--color-subtle);
+    border-radius: 6px;
+    padding: 22px 22px 18px;
+    margin-bottom: calc(var(--gap-section) + 16px);
+  }
+  .nl-subscribe-label {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-fg);
+    margin-bottom: 10px;
+  }
+  .nl-form {
+    display: flex;
+    gap: 8px;
+  }
+  .nl-input {
+    flex: 1;
+    font-family: var(--font-sans);
+    font-size: var(--type-small);
+    padding: 9px 12px;
+    background: var(--color-bg);
+    border: 0.5px solid var(--color-border);
+    border-radius: 4px;
+    color: var(--color-fg);
+    outline: none;
+  }
+  .nl-button {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 9px 16px;
+    background: var(--color-fg);
+    color: var(--color-bg);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .nl-subscribe-note {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--color-faint);
+    margin-top: 8px;
+  }
+  .nl-archive-label {
+    margin-bottom: 8px;
+  }
+  .nl-issue {
+    display: grid;
+    grid-template-columns: 1fr 110px;
+    gap: 0 20px;
+    align-items: start;
+    padding: 26px 0;
+    border-top: 0.5px solid var(--color-border);
+    text-decoration: none;
+    color: inherit;
+  }
+  .nl-issue:hover { text-decoration: none; }
+  .nl-issue-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .nl-issue-num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-faint);
+  }
+  .nl-issue-date {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+  .nl-issue-title {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.28;
+    margin-bottom: 5px;
+    color: var(--color-fg);
+  }
+  .nl-issue-preview {
+    font-family: var(--font-sans);
+    font-size: var(--type-small);
+    line-height: var(--lh-small);
+    color: var(--color-muted);
+  }
+  .nl-issue-image {
+    aspect-ratio: 16/10;
+    border-radius: 2px;
+    width: 100%;
+    margin-top: 2px;
+  }
+  @media (max-width: 520px) {
+    .nl-issue { grid-template-columns: 1fr; }
+    .nl-issue-image { display: none; }
+  }
+</style>

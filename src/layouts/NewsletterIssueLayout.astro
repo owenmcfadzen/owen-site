@@ -1,0 +1,175 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  num: string;
+  title: string;
+  date: string;
+}
+
+const { num, title, date } = Astro.props;
+---
+<Base title={`No. ${num}: ${title} — Newsletter`} currentPage="newsletter">
+  <div class="issue-page">
+    <a href="/newsletter/" class="issue-back">← Archive</a>
+
+    <div class="issue-header">
+      <div class="issue-num">{num}</div>
+      <h1 class="issue-title">{title}</h1>
+      <div class="issue-date">{date}</div>
+    </div>
+
+    <slot />
+
+    <div class="issue-subscribe">
+      <div class="issue-subscribe-text">Enjoyed this? The newsletter lands roughly monthly.</div>
+      <form class="issue-subscribe-form">
+        <input type="email" placeholder="you@example.com" class="issue-input" />
+        <button type="submit" class="issue-button">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .issue-page {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: clamp(60px, 10vw, 112px) var(--page-pad) 0;
+  }
+  .issue-back {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--color-muted);
+    text-decoration: none;
+    margin-bottom: 48px;
+  }
+  .issue-back:hover { text-decoration: none; color: var(--color-fg); }
+  .issue-header {
+    margin-bottom: calc(var(--gap-section) + 8px);
+  }
+  .issue-num {
+    font-family: var(--font-mono);
+    font-size: 40px;
+    font-weight: 400;
+    color: var(--color-faint);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .issue-title {
+    font-family: var(--font-sans);
+    font-size: clamp(24px, 3.5vw, 34px);
+    font-weight: 600;
+    line-height: 1.22;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+  .issue-date {
+    font-family: var(--font-sans);
+    font-size: var(--type-small);
+    color: var(--color-muted);
+  }
+
+  /* Section blocks within issue */
+  .issue-page :global(.issue-section) {
+    margin-bottom: var(--gap-section);
+    padding-bottom: var(--gap-section);
+    border-bottom: 0.5px solid var(--color-border);
+  }
+  .issue-page :global(.issue-section-label) {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .issue-page :global(.issue-section-title) {
+    font-family: var(--font-sans);
+    font-size: clamp(19px, 2.2vw, 23px);
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0 0 var(--gap-paragraph);
+  }
+  .issue-page :global(.issue-body-text) {
+    font-family: var(--font-serif);
+    font-size: var(--type-body);
+    line-height: var(--lh-body);
+    color: var(--color-body);
+    margin: 0 0 var(--gap-paragraph);
+  }
+  .issue-page :global(.issue-intro) {
+    font-family: var(--font-serif);
+    font-size: var(--type-body);
+    line-height: var(--lh-body);
+    color: var(--color-fg);
+    margin: 0;
+  }
+  .issue-page :global(.found-item) {
+    margin-bottom: 18px;
+    padding-left: 14px;
+    border-left: 2px solid var(--color-border);
+  }
+  .issue-page :global(.found-title) {
+    font-family: var(--font-sans);
+    font-size: var(--type-small);
+    font-weight: 500;
+    color: var(--color-fg);
+    margin-bottom: 3px;
+  }
+  .issue-page :global(.found-desc) {
+    font-family: var(--font-serif);
+    font-size: var(--type-small);
+    line-height: 1.55;
+    color: var(--color-body);
+  }
+  .issue-page :global(.found-url) {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-link);
+    margin-top: 4px;
+  }
+
+  .issue-subscribe {
+    background: var(--color-subtle);
+    border-radius: 6px;
+    padding: 24px 24px 20px;
+    margin-bottom: var(--gap-section);
+  }
+  .issue-subscribe-text {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--color-fg);
+    margin-bottom: 14px;
+  }
+  .issue-subscribe-form {
+    display: flex;
+    gap: 8px;
+  }
+  .issue-input {
+    flex: 1;
+    font-family: var(--font-sans);
+    font-size: var(--type-small);
+    padding: 9px 12px;
+    background: var(--color-bg);
+    border: 0.5px solid var(--color-border);
+    border-radius: 4px;
+    color: var(--color-fg);
+    outline: none;
+  }
+  .issue-button {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 9px 16px;
+    background: var(--color-fg);
+    color: var(--color-bg);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+</style>

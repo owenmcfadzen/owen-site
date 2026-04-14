@@ -1,0 +1,45 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import QualitySpectrum from '../../components/QualitySpectrum.jsx';
+---
+<ArticleLayout
+  title="Default Quality"
+  subtitle="What the Japanese convenience store teaches about baseline standards"
+  category="Observation"
+  date="March 2026"
+  readTime="6 min"
+  bg="#eae6de"
+  fg="#1d1d1b"
+  heroImageColor="#d8d0c4"
+  heroImageCaption="A 7-Eleven in Shibuya, 2am."
+>
+
+<p class="lede">In a 7-Eleven in Shibuya, at 2am, you can buy an onigiri that is genuinely good. Not 'good for a convenience store.' Good. The rice is the right temperature, the nori is crisp, and the filling is made with care that would be considered premium anywhere else.</p>
+
+<h2>The baseline problem</h2>
+
+<p>Most industries in most countries have settled on a baseline quality that's adequate. It's fine. Nobody complains, because nobody expects more. The Japanese combini inverts this — the baseline is set high enough that the gap between convenience and craft is almost imperceptible.</p>
+
+<p>This isn't perfectionism. Perfectionism is neurotic and unsustainable. This is something else — a cultural agreement that the default should be good.<sup class="footnote-ref"><a href="#fn-1">1</a></sup> Not the premium tier. The default.</p>
+
+<figure>
+  <div style="aspect-ratio: 4/3; background: #cfc8bc; border-radius: 2px; width: 100%;"></div>
+  <figcaption>The three-step onigiri wrapper. Someone designed and iterated on this — for a convenience store snack.</figcaption>
+</figure>
+
+<QualitySpectrum client:visible />
+
+<h2>What this means for design</h2>
+
+<p>When I design systems — curriculum, software, operational infrastructure — I keep coming back to this principle. The question isn't 'how do we make the best version?' It's 'how do we raise the floor?' Because most people interact with the floor. The ceiling is for brochures.</p>
+
+<p>The combini doesn't have a 'premium onigiri' section. They're all good. That's the lesson.</p>
+
+<div class="footnotes">
+  <div class="footnote-item" id="fn-1">
+    <span class="footnote-num">1</span>
+    <span class="footnote-text">Kodawari (こだわり) — an uncompromising dedication to pursuing a particular thing.</span>
+  </div>
+</div>
+
+</ArticleLayout>

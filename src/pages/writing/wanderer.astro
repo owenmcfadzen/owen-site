@@ -1,0 +1,62 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import Timeline from '../../components/Timeline.jsx';
+---
+<ArticleLayout
+  title="The Wanderer"
+  subtitle="On time blindness, immigration, and a watch that keeps showing up"
+  category="Essay"
+  date="April 2026"
+  readTime="12 min"
+  bg="#1a1a2e"
+  fg="#e5e2dd"
+  heroImageColor="#2a2a4e"
+  heroImageCaption="Nivada Grenchen Antarctic 'Wanderer', c. 1965. The dial has aged from white to warm cream — yaketsuki."
+>
+
+<p class="lede">I bought the watch because I couldn't stop thinking about it. A 1960s Nivada Grenchen Antarctic, with a dial that had turned from white to a warm cream over sixty years — the Japanese call this <em>yaketsuki</em>, the beautiful aging that happens when something has been lived with.</p>
+
+<h2>Time blindness</h2>
+
+<p>There's a condition — not officially, not in any manual — called time blindness. It's the inability to feel time passing. Not in the philosophical sense that occupies German professors. In the practical sense: you sit down to work, and when you look up, four hours have vanished. You consistently underestimate how long things take. You are perpetually, genuinely surprised that it's already Thursday.</p>
+
+<p>I have this. I've had it my whole life.<sup class="footnote-ref" id="fnref-1"><a href="#fn-1">1</a></sup> And for most of that life, I compensated with systems — calendars, alarms, the gentle tyranny of other people's expectations. Moving to Copenhagen made it worse, or perhaps just more visible. When you immigrate, you lose the ambient time-keeping of familiarity.</p>
+
+<figure>
+  <div style="aspect-ratio: 3/2; background: #252540; border-radius: 2px; width: 100%;"></div>
+  <figcaption>Copenhagen in October. The light arrives at a different angle than what I grew up with.</figcaption>
+</figure>
+
+<Timeline client:visible />
+
+<h2>What remains</h2>
+
+<p>The Wanderer was Nivada Grenchen's attempt at a tool watch for people who moved between time zones. It had an inner rotating bezel — you could track a second time zone by turning the ring. This was 1960s practicality: if you're flying between Zurich and New York, you want to know what time it is in both places without doing arithmetic.</p>
+
+<p>Sixty years later, I don't need that feature. My phone handles time zones. What I need is something more basic: a physical reminder that time is passing.<sup class="footnote-ref" id="fnref-2"><a href="#fn-2">2</a></sup></p>
+
+<figure style="max-width: 55%;">
+  <div style="aspect-ratio: 1/1; background: #2e2e4a; border-radius: 2px; width: 100%;"></div>
+  <figcaption>Detail of the inner rotating bezel. The second timezone markings have faded unevenly.</figcaption>
+</figure>
+
+<p>This is the paradox of the immigrant's relationship to objects. You leave a country and you leave most of your things. The few objects that travel with you take on outsized significance — they become anchors in a life that's otherwise been unmoored and rebuilt.</p>
+
+<p>There's a Japanese concept — <em>mono no aware</em><sup class="footnote-ref" id="fnref-3"><a href="#fn-3">3</a></sup> — that translates roughly as 'the pathos of things.' It's the bittersweet awareness that everything is transient. The cherry blossom is beautiful precisely because it falls.</p>
+
+<div class="footnotes">
+  <div class="footnote-item" id="fn-1">
+    <span class="footnote-num">1</span>
+    <span class="footnote-text">ADHD researchers use the term clinically. For those who experience it, it's less a blindness and more a different relationship to duration.</span>
+  </div>
+  <div class="footnote-item" id="fn-2">
+    <span class="footnote-num">2</span>
+    <span class="footnote-text">A persistent, gentle interruption to the timelessness of deep work and digital life.</span>
+  </div>
+  <div class="footnote-item" id="fn-3">
+    <span class="footnote-num">3</span>
+    <span class="footnote-text">Mono no aware (物の哀れ) — literally 'the ahh-ness of things.' Articulated by Motoori Norinaga as the emotional core of Japanese aesthetics.</span>
+  </div>
+</div>
+
+</ArticleLayout>

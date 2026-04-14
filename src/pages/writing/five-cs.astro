@@ -1,0 +1,36 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import FiveCsDiagram from '../../components/FiveCsDiagram.jsx';
+---
+<ArticleLayout
+  title="The Five C's"
+  subtitle="A creative process for the age of AI thinking partners"
+  category="Framework"
+  date="February 2026"
+  readTime="9 min"
+  bg="#0d1b2a"
+  fg="#dddcd8"
+  heroImageColor="#162d45"
+>
+
+<p class="lede">The blank page has been the enemy of creative work since the invention of the page. But the blank page problem was never really about the page — it was about the gap between thinking and articulating. AI doesn't solve creativity. It removes the blank page.</p>
+
+<FiveCsDiagram client:visible />
+
+<h2>Capture</h2>
+<p>Everything starts with capture — the bookmark, the photograph, the voice memo, the screenshot. Most of this will never become anything. That's fine. Capture is compost.</p>
+
+<h2>Converse</h2>
+<p>This is where AI changes the game. You bring a half-formed idea to a thinking partner and through dialogue, the idea takes shape.<sup class="footnote-ref"><a href="#fn-1">1</a></sup> The AI doesn't generate the insight. You do. But you generate it in conversation rather than in isolation.</p>
+
+<h2>Clarify → Create → Communicate</h2>
+<p>After conversation comes clarification — deciding what the thing actually is. Then making it, with momentum behind you. Then shipping it. The Five C's treat communication as part of the creative process, not an afterthought.</p>
+
+<div class="footnotes">
+  <div class="footnote-item" id="fn-1">
+    <span class="footnote-num">1</span>
+    <span class="footnote-text">Frank Chimero: 'You use a tool, but you play an instrument.' Instruments require technique and touch.</span>
+  </div>
+</div>
+
+</ArticleLayout>

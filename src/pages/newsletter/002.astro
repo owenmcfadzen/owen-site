@@ -1,0 +1,17 @@
+---
+import NewsletterIssueLayout from '../../layouts/NewsletterIssueLayout.astro';
+const issues = {
+  "001": { title: "Hello, and the onigiri principle", date: "November 2025" },
+  "002": { title: "Systems, not sequences", date: "December 2025" },
+  "003": { title: "Musashi's sword", date: "January 2026" },
+  "004": { title: "Building in public, quietly", date: "February 2026" },
+  "005": { title: "Fifteen trips to Japan", date: "March 2026" },
+};
+const num = Astro.url.pathname.split('/').filter(Boolean).pop();
+const issue = issues[num] || { title: "Issue", date: "" };
+---
+<NewsletterIssueLayout num={num} title={issue.title} date={issue.date}>
+  <div class="issue-section">
+    <p class="issue-intro">This issue is being written. Check back soon.</p>
+  </div>
+</NewsletterIssueLayout>

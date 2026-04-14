@@ -1,0 +1,169 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  category: string;
+  date: string;
+  readTime: string;
+  bg: string;
+  fg: string;
+  heroImageColor?: string;
+  heroImageCaption?: string;
+}
+
+const { title, subtitle, category, date, readTime, bg, fg, heroImageColor, heroImageCaption } = Astro.props;
+---
+<Base title={`${title} — Owen McFadzen`} currentPage="home">
+  <article>
+    <!-- Hero -->
+    <div class="article-hero" style={`background:${bg}; color:${fg};`}>
+      <div class="article-hero-content">
+        <a href="/" class="back-link" style={`color:${fg};`}>← Back</a>
+        <h5 class="section-label--small" style={`opacity:0.45;`}>{category}</h5>
+        <h1 class="article-title">{title}</h1>
+        <p class="article-subtitle">{subtitle}</p>
+        <div class="article-meta">
+          <span>{date}</span>
+          <span class="meta-dot" style={`background:${fg};`}></span>
+          <span>{readTime}</span>
+        </div>
+      </div>
+      {heroImageColor && (
+        <div class="article-hero-image-wrap">
+          <div class="article-hero-image" style={`background:${heroImageColor};`}></div>
+        </div>
+      )}
+    </div>
+
+    <!-- Hero caption -->
+    {heroImageCaption && (
+      <div class="prose" style="padding-top: 10px;">
+        <figcaption>{heroImageCaption}</figcaption>
+      </div>
+    )}
+
+    <!-- Body -->
+    <div class="prose article-body">
+      <slot />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .article-hero {
+    padding: clamp(100px, 14vw, 180px) var(--page-pad) 0;
+    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .article-hero-content {
+    max-width: 620px;
+    padding-bottom: var(--gap-section);
+  }
+  .back-link {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    opacity: 0.4;
+    text-decoration: none;
+    margin-bottom: 40px;
+  }
+  .back-link:hover { opacity: 0.7; text-decoration: none; }
+  .article-title {
+    font-family: var(--font-serif);
+    font-size: clamp(32px, 5.5vw, 50px);
+    font-weight: 700;
+    line-height: 1.12;
+    margin: 0 0 12px;
+  }
+  .article-subtitle {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.45;
+    margin: 0 0 24px;
+    opacity: 0.5;
+    max-width: 440px;
+  }
+  .article-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    opacity: 0.35;
+  }
+  .meta-dot {
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    opacity: 0.2;
+  }
+  .article-hero-image-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 var(--page-pad);
+  }
+  .article-hero-image {
+    aspect-ratio: 16/10;
+    border-radius: 2px 2px 0 0;
+    width: 100%;
+  }
+  .article-body {
+    padding-top: var(--gap-section);
+    padding-bottom: var(--gap-section);
+  }
+
+  /* Prose typography for article body */
+  .article-body :global(p) {
+    font-family: var(--font-serif);
+    font-size: var(--type-body);
+    line-height: var(--lh-body);
+    color: var(--color-body);
+    margin: 0 0 var(--gap-paragraph);
+  }
+  .article-body :global(p.lede) {
+    font-size: var(--type-lede);
+    line-height: var(--lh-lede);
+    color: var(--color-fg);
+  }
+  .article-body :global(h2) {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin: var(--gap-section) 0 var(--gap-paragraph);
+  }
+  .article-body :global(figure) {
+    margin: var(--gap-element) 0;
+  }
+  .article-body :global(.footnotes) {
+    margin-top: var(--gap-section);
+    padding-top: var(--gap-paragraph);
+    border-top: 0.5px solid var(--color-border);
+  }
+  .article-body :global(.footnote-item) {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: baseline;
+  }
+  .article-body :global(.footnote-num) {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-link);
+    flex-shrink: 0;
+    min-width: 14px;
+  }
+  .article-body :global(.footnote-text) {
+    font-family: var(--font-sans);
+    font-size: var(--type-small);
+    line-height: var(--lh-small);
+    color: var(--color-muted);
+  }
+</style>

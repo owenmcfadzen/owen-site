@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import HeroSection from '../components/HeroSection.astro';
+
+const articles = [
+  {
+    slug: "wanderer",
+    category: "Essay",
+    title: "The Wanderer",
+    subtitle: "On time blindness, immigration, and a watch that keeps showing up",
+    bg: "#1a1a2e",
+    fg: "#e5e2dd",
+    imageColor: "#2a2a4e",
+  },
+  {
+    slug: "default-quality",
+    category: "Observation",
+    title: "Default Quality",
+    subtitle: "What the Japanese convenience store teaches about baseline standards",
+    bg: "#eae6de",
+    fg: "#1d1d1b",
+    imageColor: "#d8d0c4",
+  },
+  {
+    slug: "five-cs",
+    category: "Framework",
+    title: "The Five C's",
+    subtitle: "A creative process for the age of AI thinking partners",
+    bg: "#0d1b2a",
+    fg: "#dddcd8",
+    imageColor: "#162d45",
+  },
+  {
+    slug: "systems-not-sequences",
+    category: "Thinking",
+    title: "Systems, Not Sequences",
+    subtitle: "Why I think in spatial arrangements rather than linear plans",
+    bg: "#264653",
+    fg: "#eeece8",
+    imageColor: "#2f5565",
+  },
+];
+---
+<Base title="Owen McFadzen" currentPage="home">
+  {articles.map(a => (
+    <HeroSection
+      category={a.category}
+      title={a.title}
+      subtitle={a.subtitle}
+      href={`/writing/${a.slug}/`}
+      bg={a.bg}
+      fg={a.fg}
+      imageColor={a.imageColor}
+    />
+  ))}
+</Base>

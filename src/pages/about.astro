@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="About — Owen McFadzen" currentPage="about">
+  <div class="about-page">
+    <h1 class="about-name">Owen McFadzen</h1>
+
+    <p class="about-lede">I design systems that help people think and work better. I live in Copenhagen with my family. My background is in architecture — interaction design and digital media — which taught me to see problems as spatial rather than sequential.</p>
+
+    <div class="about-photos">
+      <div class="about-photo-placeholder"></div>
+      <div class="about-photo-placeholder"></div>
+    </div>
+
+    <h2 class="section-label">Currently</h2>
+    <p>Director of Programs & Learning at Hudson Lab Ventures, building entrepreneurship education for teenagers across three continents. Sole operator of HLV's automation infrastructure — Make.com, Notion, Tally, Loops, Stripe.</p>
+
+    <h2 class="section-label" style="margin-top: var(--gap-section);">Previously</h2>
+    <p>Entrepreneur in Residence and Partner at Prehype, the venture development firm behind Bark and Barkbox. Architecture education at two universities — the foundation for everything since.</p>
+
+    <h2 class="section-label" style="margin-top: var(--gap-section);">Interests</h2>
+    <p>Fifteen trips to Japan. Scandinavian restraint and Japanese craft shape how I think about quality, intention, and attention. I write about systems thinking, material culture, movement practice, and using AI as a creative instrument.</p>
+
+    <div class="about-wide-photo">
+      <div class="about-photo-placeholder about-photo-placeholder--wide"></div>
+    </div>
+    <figcaption>Tokyo, somewhere between the fifth and fifteenth trip.</figcaption>
+
+    <h2 class="section-label" style="margin-top: var(--gap-section);">This site</h2>
+    <p>Built with Astro, typeset in Charter and Inter, styled by hand. The interactive components are built with Claude. Column width is calculated from font metrics to hold 12–16 words per line. If something on this site can only exist on the web, that's by design.</p>
+
+    <div class="about-contact">
+      <a href="mailto:owen@owenmcfadzen.com" class="mono text-link">owen@owenmcfadzen.com</a>
+      <a href="https://linkedin.com/in/owenmcfadzen" class="sans text-link" style="margin-top: 8px; display: block;">LinkedIn</a>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .about-page {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: clamp(60px, 10vw, 112px) var(--page-pad);
+  }
+  .about-name {
+    font-family: var(--font-serif);
+    font-size: clamp(30px, 4.5vw, 42px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 44px;
+  }
+  .about-lede {
+    font-family: var(--font-serif);
+    font-size: var(--type-lede);
+    line-height: var(--lh-lede);
+    color: var(--color-fg);
+    margin: 0 0 var(--gap-element);
+  }
+  .about-page p:not(.about-lede) {
+    font-family: var(--font-serif);
+    font-size: var(--type-body);
+    line-height: var(--lh-body);
+    color: var(--color-body);
+    margin: 0 0 var(--gap-paragraph);
+  }
+  .about-photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: var(--gap-section) 0;
+  }
+  .about-photo-placeholder {
+    aspect-ratio: 4/3;
+    background: var(--color-subtle);
+    border: 0.5px solid var(--color-border);
+    border-radius: 2px;
+  }
+  .about-photo-placeholder--wide {
+    aspect-ratio: 16/9;
+    grid-column: 1 / -1;
+  }
+  .about-wide-photo {
+    margin: var(--gap-section) 0 0;
+  }
+  .about-contact {
+    margin-top: var(--gap-section);
+    padding-top: var(--gap-paragraph);
+    border-top: 0.5px solid var(--color-border);
+  }
+  .about-contact a {
+    font-size: 13px;
+  }
+</style>
