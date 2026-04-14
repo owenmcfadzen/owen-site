@@ -1,33 +1,50 @@
 ---
 import Base from '../layouts/Base.astro';
+import FifteenTrips from '../components/FifteenTrips.jsx';
+import LiveColophon from '../components/LiveColophon.jsx';
 ---
 <Base title="About — Owen McFadzen" currentPage="about">
   <div class="about-page">
+
     <h1 class="about-name">Owen McFadzen</h1>
 
     <p class="about-lede">I design systems that help people think and work better. I live in Copenhagen with my family. My background is in architecture — interaction design and digital media — which taught me to see problems as spatial rather than sequential.</p>
 
-    <div class="about-photos">
-      <div class="about-photo-placeholder"></div>
-      <div class="about-photo-placeholder"></div>
+    <!-- Film photos: break the grid -->
+    <div class="photo-scatter">
+      <div class="film-print film-print--left">
+        <div class="film-print-image" style="background: #3a3830;"></div>
+      </div>
+      <div class="film-print film-print--right">
+        <div class="film-print-image" style="background: #2a3040;"></div>
+      </div>
     </div>
 
     <h2 class="section-label">Currently</h2>
-    <p>Director of Programs & Learning at Hudson Lab Ventures, building entrepreneurship education for teenagers across three continents. Sole operator of HLV's automation infrastructure — Make.com, Notion, Tally, Loops, Stripe.</p>
+    <p>Director of Programs & Learning at Hudson Lab Ventures, building entrepreneurship education for teenagers across three continents. The job is half narrative architecture — designing what the experience should mean — and half operational infrastructure — making the machinery actually run. Make.com, Notion, Tally, Loops, Stripe. Bridging the gap between intent and execution is what I do.</p>
 
     <h2 class="section-label" style="margin-top: var(--gap-section);">Previously</h2>
-    <p>Entrepreneur in Residence and Partner at Prehype, the venture development firm behind Bark and Barkbox. Architecture education at two universities — the foundation for everything since.</p>
+    <p>Entrepreneur in Residence and Partner at Prehype, the venture development firm behind Bark and Barkbox. Before that, architecture school — twice — which is where I learned that every interesting problem is a systems problem in disguise.</p>
 
     <h2 class="section-label" style="margin-top: var(--gap-section);">Interests</h2>
-    <p>Fifteen trips to Japan. Scandinavian restraint and Japanese craft shape how I think about quality, intention, and attention. I write about systems thinking, material culture, movement practice, and using AI as a creative instrument.</p>
+    <p>Fifteen trips to Japan.</p>
+    <FifteenTrips client:visible />
+    <p>These visits — and the years of reading, collecting, and paying attention between them — are the lens through which I see most things. Scandinavian restraint and Japanese craft aren't opposites. They're two answers to the same question: what happens when you pay attention to the things most people rush past?</p>
+    <p>I write about systems thinking, material culture, movement practice, considered objects, and using AI as a creative instrument rather than a replacement for thinking.</p>
 
-    <div class="about-wide-photo">
-      <div class="about-photo-placeholder about-photo-placeholder--wide"></div>
+    <!-- Wide Tokyo photo: also breaks the grid -->
+    <div class="photo-scatter photo-scatter--wide">
+      <div class="film-print film-print--wide">
+        <div class="film-print-image" style="background: #2e3028; aspect-ratio: 2.4/1;"></div>
+      </div>
     </div>
-    <figcaption>Tokyo, somewhere between the fifth and fifteenth trip.</figcaption>
+    <figcaption class="photo-scatter-caption">Tokyo, somewhere between the fifth and fifteenth trip.</figcaption>
 
     <h2 class="section-label" style="margin-top: var(--gap-section);">This site</h2>
-    <p>Built with Astro, typeset in Charter and Inter, styled by hand. The interactive components are built with Claude. Column width is calculated from font metrics to hold 12–16 words per line. If something on this site can only exist on the web, that's by design.</p>
+    <p>Built with Astro, typeset in Charter and Inter, styled by hand. The interactive components are built in conversation with Claude — not generated, but developed through dialogue. If something on this site can only exist on the web, that's by design.</p>
+    <p>The column you're reading is calculated from Charter's font metrics to hold 12–16 words per line. The spacing has three values. The colors have three tiers. Everything here is a system, because systems compound while decoration fades.</p>
+
+    <LiveColophon client:visible />
 
     <div class="about-contact">
       <a href="mailto:owen@owenmcfadzen.com" class="mono text-link">owen@owenmcfadzen.com</a>
@@ -38,7 +55,7 @@ import Base from '../layouts/Base.astro';
 
 <style>
   .about-page {
-    max-width: 620px;
+    max-width: var(--col-width);
     margin: 0 auto;
     padding: clamp(60px, 10vw, 112px) var(--page-pad);
   }
@@ -63,25 +80,73 @@ import Base from '../layouts/Base.astro';
     color: var(--color-body);
     margin: 0 0 var(--gap-paragraph);
   }
-  .about-photos {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    margin: var(--gap-section) 0;
+
+  /* --- Film print photos: break the grid --- */
+  .photo-scatter {
+    position: relative;
+    height: clamp(260px, 35vw, 380px);
+    margin: var(--gap-section) calc(-1 * var(--page-pad)) var(--gap-section);
+    /* bleeds past the text column */
   }
-  .about-photo-placeholder {
-    aspect-ratio: 4/3;
-    background: var(--color-subtle);
-    border: 0.5px solid var(--color-border);
-    border-radius: 2px;
+  .photo-scatter--wide {
+    height: clamp(200px, 28vw, 320px);
+    margin-bottom: 0;
   }
-  .about-photo-placeholder--wide {
-    aspect-ratio: 16/9;
-    grid-column: 1 / -1;
+  .film-print {
+    position: absolute;
+    background: #fff;
+    padding: 10px 10px 28px;
+    box-shadow:
+      0 1px 3px rgba(0,0,0,0.08),
+      0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
   }
-  .about-wide-photo {
-    margin: var(--gap-section) 0 0;
+  [data-theme="dark"] .film-print {
+    background: #2a2a28;
+    box-shadow:
+      0 1px 3px rgba(0,0,0,0.3),
+      0 4px 12px rgba(0,0,0,0.2);
   }
+  .film-print-image {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3/2;
+    border-radius: 1px;
+  }
+  .film-print--left {
+    width: clamp(220px, 32vw, 340px);
+    height: auto;
+    left: 5%;
+    top: 10%;
+    transform: rotate(-2.5deg);
+    z-index: 1;
+  }
+  .film-print--right {
+    width: clamp(200px, 28vw, 300px);
+    height: auto;
+    right: 5%;
+    top: 5%;
+    transform: rotate(1.8deg);
+    z-index: 2;
+  }
+  .film-print--wide {
+    position: relative;
+    width: clamp(340px, 70vw, 600px);
+    margin: 0 auto;
+    height: auto;
+    transform: rotate(-0.8deg);
+  }
+  .film-print--wide .film-print-image {
+    aspect-ratio: 2.4/1;
+  }
+  .photo-scatter-caption {
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: var(--gap-section);
+    border-top: none;
+    padding-top: 0;
+  }
+
   .about-contact {
     margin-top: var(--gap-section);
     padding-top: var(--gap-paragraph);
@@ -89,5 +154,19 @@ import Base from '../layouts/Base.astro';
   }
   .about-contact a {
     font-size: 13px;
+  }
+
+  @media (max-width: 600px) {
+    .photo-scatter {
+      height: clamp(180px, 50vw, 260px);
+    }
+    .film-print--left {
+      width: 55%;
+      left: 2%;
+    }
+    .film-print--right {
+      width: 48%;
+      right: 2%;
+    }
   }
 </style>
