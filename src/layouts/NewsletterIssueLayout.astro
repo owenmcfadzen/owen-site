@@ -40,7 +40,10 @@ const { num, title, date } = Astro.props;
   .issue-back {
     display: inline-block;
     font-family: var(--font-sans);
-    font-size: 13px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--color-muted);
     text-decoration: none;
     margin-bottom: 48px;
@@ -67,7 +70,10 @@ const { num, title, date } = Astro.props;
   }
   .issue-date {
     font-family: var(--font-sans);
-    font-size: var(--type-small);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     color: var(--color-muted);
   }
 
@@ -79,13 +85,13 @@ const { num, title, date } = Astro.props;
   }
   .issue-page :global(.issue-section-label) {
     font-family: var(--font-sans);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--color-muted);
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
   .issue-page :global(.issue-section-title) {
     font-family: var(--font-sans);
