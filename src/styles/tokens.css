@@ -48,6 +48,7 @@
   --color-border: rgba(0, 0, 0, 0.08);
   --color-subtle: rgba(0, 0, 0, 0.03);
   --color-link: #0969da;
+  --color-header-bg: rgba(250, 249, 247, 0.92);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -60,6 +61,7 @@
     --color-border: rgba(255, 255, 255, 0.08);
     --color-subtle: rgba(255, 255, 255, 0.04);
     --color-link: #6db3f2;
+    --color-header-bg: rgba(20, 20, 19, 0.92);
   }
 }
 
@@ -73,6 +75,7 @@
   --color-border: rgba(255, 255, 255, 0.08);
   --color-subtle: rgba(255, 255, 255, 0.04);
   --color-link: #6db3f2;
+  --color-header-bg: rgba(20, 20, 19, 0.92);
 }
 
 [data-theme="light"] {
@@ -84,6 +87,7 @@
   --color-border: rgba(0, 0, 0, 0.08);
   --color-subtle: rgba(0, 0, 0, 0.03);
   --color-link: #0969da;
+  --color-header-bg: rgba(250, 249, 247, 0.92);
 }
 
 /* --- Responsive type: bump sizes on wide screens to maintain reading comfort --- */

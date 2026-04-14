@@ -33,7 +33,7 @@ const { num, title, date } = Astro.props;
 
 <style>
   .issue-page {
-    max-width: 620px;
+    max-width: var(--col-width);
     margin: 0 auto;
     padding: clamp(60px, 10vw, 112px) var(--page-pad) 0;
   }
@@ -59,10 +59,10 @@ const { num, title, date } = Astro.props;
   }
   .issue-title {
     font-family: var(--font-sans);
-    font-size: clamp(24px, 3.5vw, 34px);
+    font-size: clamp(26px, 4vw, 38px);
     font-weight: 600;
-    line-height: 1.22;
-    margin: 0 0 10px;
+    line-height: 1.2;
+    margin: 0 0 12px;
     letter-spacing: -0.01em;
   }
   .issue-date {
@@ -89,7 +89,7 @@ const { num, title, date } = Astro.props;
   }
   .issue-page :global(.issue-section-title) {
     font-family: var(--font-sans);
-    font-size: clamp(19px, 2.2vw, 23px);
+    font-size: clamp(20px, 2.5vw, 26px);
     font-weight: 600;
     line-height: 1.25;
     margin: 0 0 var(--gap-paragraph);
