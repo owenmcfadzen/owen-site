@@ -29,13 +29,13 @@
   --lh-small: 1.5;
 
   /* --- Spacing: 3 values --- */
-  --gap-paragraph: 22px;
+  --gap-paragraph: 26px;
   --gap-element: 32px;
   --gap-section: 56px;
 
   /* --- Layout --- */
   --page-pad: clamp(20px, 5vw, 56px);
-  --col-width: 640px; /* fallback — JS calculates from font metrics */
+  --col-width: 720px; /* wider column — ~50% of viewport on desktop */
   --header-height: 52px;
   --hero-height: 36em;
 

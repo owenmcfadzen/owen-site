@@ -37,9 +37,9 @@ const { title, subtitle, category, date, readTime, bg, fg, heroImageColor, heroI
       )}
     </div>
 
-    <!-- Hero caption -->
+    <!-- Hero caption — attached to image, not floating -->
     {heroImageCaption && (
-      <div class="prose" style="padding-top: 10px;">
+      <div class="article-hero-caption">
         <figcaption>{heroImageCaption}</figcaption>
       </div>
     )}
@@ -102,7 +102,7 @@ const { title, subtitle, category, date, readTime, bg, fg, heroImageColor, heroI
     opacity: 0.2;
   }
   .article-hero-image-wrap {
-    max-width: 860px;
+    max-width: 920px;
     margin: 0 auto;
     width: 100%;
     padding: 0 var(--page-pad);
@@ -112,8 +112,19 @@ const { title, subtitle, category, date, readTime, bg, fg, heroImageColor, heroI
     border-radius: 2px 2px 0 0;
     width: 100%;
   }
+  .article-hero-caption {
+    max-width: var(--col-width);
+    margin: 0 auto;
+    padding: 0 var(--page-pad);
+  }
+  .article-hero-caption figcaption {
+    padding-top: 12px;
+    padding-bottom: 0;
+    margin-top: 0;
+    border-top: none;
+  }
   .article-body {
-    padding-top: var(--gap-section);
+    padding-top: calc(var(--gap-section) + 8px);
     padding-bottom: var(--gap-section);
   }
 
