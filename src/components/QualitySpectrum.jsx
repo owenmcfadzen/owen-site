@@ -11,12 +11,12 @@ const items = [
 export default function QualitySpectrum() {
   const [hover, setHover] = useState(null);
   return (
-    <div style={{ margin: '32px 0' }}>
+    <div style={{ margin: '32px 0', overflow: 'hidden' }}>
       {items.map((item, i) => (
         <div key={i} onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)}
-          style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 6, cursor: 'default' }}>
+          style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 6, cursor: 'default' }}>
           <div style={{
-            fontFamily: "var(--font-sans)", fontSize: 12, width: 100, textAlign: 'right',
+            fontFamily: "var(--font-sans)", fontSize: 12, width: 'clamp(70px, 15vw, 100px)', textAlign: 'right',
             opacity: hover === i ? 0.85 : 0.45, transition: 'opacity 0.15s', flexShrink: 0,
           }}>{item.label}</div>
           <div style={{ flex: 1, height: 20, borderRadius: 2, overflow: 'hidden', background: 'currentColor', opacity: 0.05 }}>

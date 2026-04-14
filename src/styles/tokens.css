@@ -35,7 +35,7 @@
 
   /* --- Layout --- */
   --page-pad: clamp(20px, 5vw, 56px);
-  --col-width: 720px; /* wider column — ~50% of viewport on desktop */
+  --col-width: clamp(640px, 58vw, 820px);
   --header-height: 52px;
   --hero-height: 36em;
 
@@ -84,4 +84,14 @@
   --color-border: rgba(0, 0, 0, 0.08);
   --color-subtle: rgba(0, 0, 0, 0.03);
   --color-link: #0969da;
+}
+
+/* --- Responsive type: bump sizes on wide screens to maintain reading comfort --- */
+@media (min-width: 1100px) {
+  :root {
+    --type-lede: 23px;
+    --type-body: 20px;
+    --type-small: 14.5px;
+    --gap-paragraph: 28px;
+  }
 }

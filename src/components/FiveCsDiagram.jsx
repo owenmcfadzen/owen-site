@@ -11,13 +11,13 @@ const steps = [
 export default function FiveCsDiagram() {
   const [active, setActive] = useState(null);
   return (
-    <div style={{ margin: '32px 0' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ margin: '32px 0', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', gap: '4px 0' }}>
         {steps.map((step, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center' }}>
             <div onClick={() => setActive(active === i ? null : i)}
               style={{
-                cursor: 'pointer', padding: '6px 10px', borderRadius: 4,
+                cursor: 'pointer', padding: '6px 8px', borderRadius: 4,
                 background: active === i ? 'currentColor' : 'transparent',
                 opacity: active === i ? 0.06 : 1, transition: 'all 0.15s',
               }}>
@@ -26,10 +26,11 @@ export default function FiveCsDiagram() {
                 fontWeight: active === i ? 600 : 400,
                 opacity: active === i ? 1 : 0.45,
                 transition: 'all 0.15s',
+                whiteSpace: 'nowrap',
               }}>{step.key}</div>
             </div>
             {i < steps.length - 1 && (
-              <div style={{ width: 20, height: 1, background: 'currentColor', opacity: 0.1 }} />
+              <div style={{ width: 12, height: 1, background: 'currentColor', opacity: 0.1, flexShrink: 0 }} />
             )}
           </div>
         ))}
