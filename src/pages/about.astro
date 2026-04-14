@@ -27,8 +27,10 @@ import LiveColophon from '../components/LiveColophon.jsx';
     <p>Entrepreneur in Residence and Partner at Prehype, the venture development firm behind Bark and Barkbox. Before that, architecture school — twice — which is where I learned that every interesting problem is a systems problem in disguise.</p>
 
     <h2 class="section-label about-section">Interests</h2>
-    <p>Fifteen trips to Japan.</p>
-    <FifteenTrips client:visible />
+    <p style="margin-bottom: 12px;">Fifteen trips to Japan.</p>
+    <div style="margin-bottom: var(--gap-paragraph);">
+      <FifteenTrips client:visible />
+    </div>
     <p>These visits — and the years of reading, collecting, and paying attention between them — are the lens through which I see most things. Scandinavian restraint and Japanese craft aren't opposites. They're two answers to the same question: what happens when you pay attention to the things most people rush past?</p>
     <p>I write about systems thinking, material culture, movement practice, considered objects, and using AI as a creative instrument rather than a replacement for thinking.</p>
 
@@ -98,24 +100,46 @@ import LiveColophon from '../components/LiveColophon.jsx';
   }
   .film-print {
     position: absolute;
-    background: #fff;
-    padding: 10px 10px 28px;
+    /* Warm paper — real photo paper isn't pure white */
+    background: #f5f1ea;
+    background-image: linear-gradient(
+      135deg,
+      rgba(255,255,255,0.4) 0%,
+      transparent 40%,
+      rgba(0,0,0,0.02) 100%
+    );
+    /* Thicker border like a real darkroom print */
+    padding: 12px 12px 36px;
+    border-radius: 1.5px;
+    /* Layered shadows: contact + ambient + soft lift */
     box-shadow:
-      0 1px 3px rgba(0,0,0,0.08),
-      0 4px 12px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+      0 0.5px 1px rgba(0,0,0,0.12),
+      0 2px 4px rgba(0,0,0,0.08),
+      0 6px 20px rgba(0,0,0,0.06),
+      0 12px 40px rgba(0,0,0,0.03);
+    transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1);
   }
   [data-theme="dark"] .film-print {
-    background: #2a2a28;
+    background: #302e2a;
+    background-image: linear-gradient(
+      135deg,
+      rgba(255,255,255,0.06) 0%,
+      transparent 40%,
+      rgba(0,0,0,0.1) 100%
+    );
     box-shadow:
-      0 1px 3px rgba(0,0,0,0.3),
-      0 4px 12px rgba(0,0,0,0.2);
+      0 0.5px 1px rgba(0,0,0,0.4),
+      0 2px 4px rgba(0,0,0,0.3),
+      0 6px 20px rgba(0,0,0,0.2),
+      0 12px 40px rgba(0,0,0,0.1);
   }
   .film-print-image {
     width: 100%;
     height: 100%;
     aspect-ratio: 3/2;
-    border-radius: 1px;
+    border-radius: 0.5px;
+    /* Subtle inset — image sits into the paper */
+    box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.08);
   }
   .film-print--left {
     width: clamp(260px, 38vw, 400px);
@@ -125,6 +149,10 @@ import LiveColophon from '../components/LiveColophon.jsx';
     transform: rotate(-2.5deg);
     z-index: 1;
   }
+  .film-print--left:hover {
+    transform: rotate(-0.5deg) scale(1.02);
+    z-index: 10;
+  }
   .film-print--right {
     width: clamp(240px, 34vw, 360px);
     height: auto;
@@ -133,12 +161,19 @@ import LiveColophon from '../components/LiveColophon.jsx';
     transform: rotate(1.8deg);
     z-index: 2;
   }
+  .film-print--right:hover {
+    transform: rotate(0.3deg) scale(1.02);
+    z-index: 10;
+  }
   .film-print--wide {
     position: relative;
     width: clamp(380px, 75vw, 660px);
     margin: 0 auto;
     height: auto;
     transform: rotate(-0.8deg);
+  }
+  .film-print--wide:hover {
+    transform: rotate(-0.2deg) scale(1.01);
   }
   .film-print--wide .film-print-image {
     aspect-ratio: 2.4/1;
