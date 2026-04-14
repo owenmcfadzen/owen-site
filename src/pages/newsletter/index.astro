@@ -15,6 +15,22 @@ const issues = [
     <h1 class="nl-title">Newsletter</h1>
     <p class="nl-desc">Shorter thinking, half-formed ideas, things I've found. Three parts: something on my mind, something I found, what's new on the site.</p>
 
+    <!-- Skeuomorphic envelope -->
+    <div class="envelope-wrap">
+      <div class="envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+          <div class="envelope-liner"></div>
+          <div class="envelope-paper">
+            <div class="envelope-line"></div>
+            <div class="envelope-line envelope-line--short"></div>
+            <div class="envelope-line"></div>
+            <div class="envelope-line envelope-line--med"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="nl-subscribe">
       <div class="nl-subscribe-label">Subscribe</div>
       <form class="nl-form">
@@ -64,6 +80,111 @@ const issues = [
     line-height: var(--lh-body);
     color: var(--color-body);
     margin: 0 0 var(--gap-element);
+  }
+
+  /* --- Skeuomorphic envelope --- */
+  .envelope-wrap {
+    display: flex;
+    justify-content: center;
+    margin: var(--gap-element) 0 calc(var(--gap-section) + 8px);
+  }
+  .envelope {
+    position: relative;
+    width: clamp(260px, 40vw, 360px);
+    transform: rotate(-1.5deg);
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08))
+            drop-shadow(0 4px 12px rgba(0,0,0,0.06))
+            drop-shadow(0 10px 32px rgba(0,0,0,0.04));
+  }
+  .envelope-body {
+    position: relative;
+    background: #fff;
+    border-radius: 2px 2px 6px 6px;
+    padding: 20px 22px 24px;
+    overflow: hidden;
+    aspect-ratio: 1.5/1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  [data-theme="dark"] .envelope-body {
+    background: #2c2b28;
+  }
+  .envelope-liner {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0,0,0,0.02) 0%,
+      transparent 30%
+    );
+    border-bottom: 3px solid rgba(0,0,0,0.03);
+  }
+  [data-theme="dark"] .envelope-liner {
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.02) 0%,
+      transparent 30%
+    );
+    border-bottom-color: rgba(255,255,255,0.03);
+  }
+  /* Letter peeking out */
+  .envelope-paper {
+    position: relative;
+    background: #fcfbf9;
+    border-radius: 2px;
+    padding: 16px 18px;
+    margin: 0 4px;
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.04);
+    transform: translateY(8px);
+  }
+  [data-theme="dark"] .envelope-paper {
+    background: #3a3836;
+  }
+  .envelope-line {
+    height: 2px;
+    background: var(--color-border);
+    border-radius: 1px;
+    margin-bottom: 8px;
+  }
+  .envelope-line--short {
+    width: 55%;
+  }
+  .envelope-line--med {
+    width: 75%;
+    margin-bottom: 0;
+  }
+  /* Flap — folded back */
+  .envelope-flap {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: -1px;
+  }
+  .envelope-flap::before {
+    content: '';
+    display: block;
+    width: 100%;
+    aspect-ratio: 2.5/1;
+    background: #f0ede7;
+    clip-path: polygon(0% 100%, 50% 15%, 100% 100%);
+    transform: scaleY(-1) translateY(-1px);
+    transform-origin: bottom center;
+  }
+  [data-theme="dark"] .envelope-flap::before {
+    background: #262523;
+  }
+  .envelope-flap::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.04) 20%, rgba(0,0,0,0.04) 80%, transparent);
+  }
+  [data-theme="dark"] .envelope-flap::after {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04) 20%, rgba(255,255,255,0.04) 80%, transparent);
   }
   .nl-subscribe {
     background: var(--color-subtle);
