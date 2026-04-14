@@ -9,8 +9,11 @@ interface Props {
   imageColor?: string;
 }
 const { category, title, subtitle, href, bg, fg, imageColor } = Astro.props;
+const heroBg = imageColor || bg;
 ---
-<section class="hero" style={`background:${bg}; color:${fg};`}>
+<section class="hero" style={`color:${fg};`}>
+  <div class="hero-image" style={`background:${heroBg};`}></div>
+  <div class="hero-gradient" style={`background: linear-gradient(to top, ${bg} 0%, ${bg}cc 30%, transparent 70%);`}></div>
   <div class="hero-content">
     <h5 class="hero-category">{category}</h5>
     <h2 class="hero-title">{title}</h2>
@@ -19,11 +22,6 @@ const { category, title, subtitle, href, bg, fg, imageColor } = Astro.props;
       <a href={href} class="hero-button" style={`background:${fg}; color:${bg};`}>Read Article</a>
     </div>
   </div>
-  {imageColor && (
-    <div class="hero-image-wrap">
-      <div class="hero-image" style={`background:${imageColor};`}></div>
-    </div>
-  )}
 </section>
 
 <style>
@@ -34,6 +32,17 @@ const { category, title, subtitle, href, bg, fg, imageColor } = Astro.props;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+  }
+  .hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    /* When real images: background-size: cover; background-position: center; */
+  }
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
   .hero-content {
     position: relative;
@@ -85,21 +94,5 @@ const { category, title, subtitle, href, bg, fg, imageColor } = Astro.props;
   .hero-button:hover {
     text-decoration: none;
     transform: scale(0.97);
-  }
-  .hero-image-wrap {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 48%;
-    max-width: 440px;
-    z-index: 1;
-  }
-  .hero-image {
-    width: 100%;
-    aspect-ratio: 16/10;
-    border-radius: 2px 0 0 0;
-  }
-  @media (max-width: 640px) {
-    .hero-image-wrap { display: none; }
   }
 </style>
