@@ -17,8 +17,10 @@ const { title, subtitle, category, date, readTime, bg, fg, heroImageColor, heroI
 ---
 <Base title={`${title} — Owen McFadzen`} currentPage="home">
   <article>
-    <!-- Hero -->
-    <div class="article-hero" style={`background:${bg}; color:${fg};`}>
+    <!-- Hero: full-bleed image with gradient overlay -->
+    <div class="article-hero" style={`color:${fg};`}>
+      <div class="article-hero-image" style={`background:${heroImageColor || bg};`}></div>
+      <div class="article-hero-gradient" style={`background: linear-gradient(to top, ${bg} 0%, ${bg}ee 25%, ${bg}88 50%, transparent 75%);`}></div>
       <div class="article-hero-content">
         <a href="/" class="back-link" style={`color:${fg};`}>← Back</a>
         <h5 class="section-label--small" style={`opacity:0.45;`}>{category}</h5>
@@ -30,14 +32,9 @@ const { title, subtitle, category, date, readTime, bg, fg, heroImageColor, heroI
           <span>{readTime}</span>
         </div>
       </div>
-      {heroImageColor && (
-        <div class="article-hero-image-wrap">
-          <div class="article-hero-image" style={`background:${heroImageColor};`}></div>
-        </div>
-      )}
     </div>
 
-    <!-- Hero caption — attached to image, not floating -->
+    <!-- Hero caption -->
     {heroImageCaption && (
       <div class="article-hero-caption">
         <figcaption>{heroImageCaption}</figcaption>
@@ -53,15 +50,29 @@ const { title, subtitle, category, date, readTime, bg, fg, heroImageColor, heroI
 
 <style>
   .article-hero {
-    padding: clamp(100px, 14vw, 180px) var(--page-pad) 0;
-    min-height: 40vh;
+    position: relative;
+    min-height: max(50vh, 420px);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    overflow: hidden;
+  }
+  .article-hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    /* When real images: background-size: cover; background-position: center; */
+  }
+  .article-hero-gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
   .article-hero-content {
-    max-width: 620px;
-    padding-bottom: var(--gap-section);
+    position: relative;
+    z-index: 2;
+    max-width: var(--col-width);
+    padding: 0 var(--page-pad) clamp(36px, 5vw, 56px);
   }
   .back-link {
     display: inline-block;
@@ -74,18 +85,19 @@ const { title, subtitle, category, date, readTime, bg, fg, heroImageColor, heroI
   .back-link:hover { opacity: 0.7; text-decoration: none; }
   .article-title {
     font-family: var(--font-serif);
-    font-size: clamp(32px, 5.5vw, 50px);
+    font-size: clamp(36px, 6vw, 60px);
     font-weight: 700;
-    line-height: 1.12;
-    margin: 0 0 12px;
+    line-height: 1.08;
+    margin: 0 0 14px;
+    letter-spacing: -0.015em;
   }
   .article-subtitle {
     font-family: var(--font-sans);
-    font-size: 15px;
+    font-size: clamp(16px, 1.8vw, 19px);
     line-height: 1.45;
     margin: 0 0 24px;
-    opacity: 0.5;
-    max-width: 440px;
+    opacity: 0.6;
+    max-width: 500px;
   }
   .article-meta {
     display: flex;
@@ -100,17 +112,6 @@ const { title, subtitle, category, date, readTime, bg, fg, heroImageColor, heroI
     height: 2px;
     border-radius: 50%;
     opacity: 0.2;
-  }
-  .article-hero-image-wrap {
-    max-width: 920px;
-    margin: 0 auto;
-    width: 100%;
-    padding: 0 var(--page-pad);
-  }
-  .article-hero-image {
-    aspect-ratio: 16/10;
-    border-radius: 2px 2px 0 0;
-    width: 100%;
   }
   .article-hero-caption {
     max-width: var(--col-width);

@@ -13,7 +13,7 @@ const heroBg = imageColor || bg;
 ---
 <section class="hero" style={`color:${fg};`}>
   <div class="hero-image" style={`background:${heroBg};`}></div>
-  <div class="hero-gradient" style={`background: linear-gradient(to top, ${bg} 0%, ${bg}cc 30%, transparent 70%);`}></div>
+  <div class="hero-gradient" style={`background: linear-gradient(to top, ${bg} 0%, ${bg}dd 35%, ${bg}66 60%, transparent 80%);`}></div>
   <div class="hero-content">
     <h5 class="hero-category">{category}</h5>
     <h2 class="hero-title">{title}</h2>
@@ -60,20 +60,20 @@ const heroBg = imageColor || bg;
   }
   .hero-title {
     font-family: var(--font-serif);
-    font-size: clamp(28px, 4.5vw, 46px);
+    font-size: clamp(32px, 5.5vw, 56px);
     font-weight: 700;
-    line-height: 1.15;
-    margin: 0 0 10px;
-    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin: 0 0 12px;
+    letter-spacing: -0.015em;
   }
   .hero-subtitle {
     font-family: var(--font-sans);
-    font-size: 15px;
+    font-size: clamp(15px, 1.6vw, 18px);
     font-weight: 400;
     line-height: 1.45;
     margin: 0;
-    opacity: 0.55;
-    max-width: 400px;
+    opacity: 0.6;
+    max-width: 440px;
   }
   .hero-cta {
     margin-top: var(--gap-paragraph);
